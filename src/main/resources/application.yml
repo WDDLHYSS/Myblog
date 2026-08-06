@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: My_Blog
+
+mybatis-plus:
+  configuration:
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:com/wddlhyss/myblog/mapper/xml/*.xml
+
+
+server:
+  port: 8080
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

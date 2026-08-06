@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: My_Blog
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+    hikari:
+      minimum-idle: 2
+      maximum-pool-size: 10
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    # 生产环境不输出每条 SQL
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  mapper-locations:
+    - classpath:com/wddlhyss/myblog/mapper/xml/*.xml
+
+wx:
+  miniapp:
+    app-id: ${WX_MINIAPP_APP_ID}
+    secret: ${WX_MINIAPP_SECRET}
+
+server:
+  port: 8080
+  shutdown: graceful
+  forward-headers-strategy: framework
+
+jwt:
+  secret: ${JWT_SECRET}
+  expire-seconds: 604800
+  issuer: chtholly-schedule
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
+    path: /swagger-ui.html
