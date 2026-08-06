@@ -1,9 +1,9 @@
 package com.wddlhyss.myblog.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wddlhyss.myblog.entity.ScheduleRule;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanRequest;
+import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanOfNormalRequest;
+import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanOfSpeciallRequest;
 
 /**
  * <p>
@@ -15,6 +15,7 @@ import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanRequest;
  */
 public interface IScheduleRuleService extends IService<ScheduleRule> {
 
-    Long addRule(Long userId, MakeSchedulePlanRequest makeSchedulePlanRequest);
+    Long addNormalRule(Long userId, MakeSchedulePlanOfNormalRequest makeSchedulePlanOfNormalRequest);
 
+    Long addSpecialRule(Long userId, MakeSchedulePlanOfSpeciallRequest makeSchedulePlanOfSpeciallRequest);
 }

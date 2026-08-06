@@ -15,9 +15,14 @@ public class ScheduleTestRequest {
     private LocalDate startDate;
 
     /**
-     * 初始班次编码。
+     * 初始班次编码 NORMAL。
      */
     private String initialShift;
+
+    /**
+     *  初始班次 SPECIAL
+     */
+    private Integer initialRotationIndex;
 
     /**
      * 生成天数。
@@ -55,4 +60,9 @@ public class ScheduleTestRequest {
     public void setTotalDays(Integer totalDays) {
         this.totalDays = totalDays;
     }
+
+    public Integer getInitialRotationIndex() {return initialRotationIndex;}
+
+    public void setInitialRotationIndex(Integer initialRotationIndex) {this.initialRotationIndex = initialRotationIndex;}
 }
+

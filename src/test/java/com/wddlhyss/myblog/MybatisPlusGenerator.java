@@ -12,7 +12,7 @@ public class MybatisPlusGenerator {
 
     @Test
     public void test() {
-        FastAutoGenerator.create("", "root", "")
+        FastAutoGenerator.create("jdbc:mysql://localhost:3306/workdate", "root", "11235813")
                 .globalConfig(builder -> {
                     builder.author("haoyanlu") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
@@ -35,7 +35,7 @@ public class MybatisPlusGenerator {
                                 //.pathInfo(Collections.singletonMap(OutputFile.xml, System.getProperty("user.dir") + "/src/main/java")) // 设置mapperXml生成路径
                 )
                 .strategyConfig(builder ->
-                                builder.addInclude("schedule_rule","wx_user","schedule_rule_shift_order","schedule_rule_rotation_day","user_schedule_plan")
+                                builder.addInclude("schedule_rule_normal","schedule_rule_special","schedule_rule_special_day","schedule_rule_special_rotation")
                         //builder.addInclude("DianJiChe_Locomotives","DianJiChe_mining","DianJiChe_mining_schedule","DianJiChe_production_tasks","DianJiChe_production_tasks1","DianJiche_single_locomotive_tasks","DianJiChe_stations","DianJiChe_TimeTable","DianJiChe_TransportReport") // 设置需要生成的表名
                 )
                 .execute();

@@ -1,17 +1,15 @@
 package com.wddlhyss.myblog.controller;
 
-import com.wddlhyss.myblog.entity.ScheduleRule;
-import com.wddlhyss.myblog.entity.UserSchedulePlan;
 import com.wddlhyss.myblog.entity.VO.SavedScheduleResponse;
 import com.wddlhyss.myblog.entity.VO.ScheduleRow;
 import com.wddlhyss.myblog.entity.VO.ScheduleRuleResponse;
-import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanRequest;
+import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanOfNormalRequest;
+import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanOfSpeciallRequest;
 import com.wddlhyss.myblog.entity.dto.ScheduleTestRequest;
 import com.wddlhyss.myblog.service.*;
 import com.wddlhyss.myblog.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
@@ -38,18 +36,32 @@ public class UserSchedulePlanController {
     private JwtUtils jwtUtils;
 
     /**
-     * 新增规则
-     * @param makeSchedulePlanRequest
+     * 新增normal规则
+     * @param makeSchedulePlanOfNormalRequest
      * @param authorization
      * @return ruleId
      */
     @PostMapping("/addRule")
-    public Long makeSchedulePlan(@RequestBody MakeSchedulePlanRequest makeSchedulePlanRequest,
+    public Long makeScheduleNormalPlan(@RequestBody MakeSchedulePlanOfNormalRequest makeSchedulePlanOfNormalRequest,
                                  @RequestHeader("Authorization")String authorization ) {
         String token = jwtUtils.extractToken(authorization);
         Long userId = jwtUtils.parseUserId(token);
 
-        return userSchedulePlanService.makeSchedulePlan(userId,makeSchedulePlanRequest);
+        return userSchedulePlanService.makeScheduleNormalPlan(userId, makeSchedulePlanOfNormalRequest);
+    }
+    /**
+     * 新增special规则
+     * @param makeSchedulePlanOfSpeciallRequest
+     * @param authorization
+     * @return ruleId
+     */
+    @PostMapping("/addSpecialRule")
+    public Long makeScheduleSpecialPlan(@RequestBody MakeSchedulePlanOfSpeciallRequest makeSchedulePlanOfSpeciallRequest,
+                                 @RequestHeader("Authorization")String authorization ) {
+        String token = jwtUtils.extractToken(authorization);
+        Long userId = jwtUtils.parseUserId(token);
+
+        return userSchedulePlanService.makeScheduleSpecialPlan(userId, makeSchedulePlanOfSpeciallRequest);
     }
 
     /**
@@ -97,21 +109,39 @@ public class UserSchedulePlanController {
     }
 
     /**
-     * 根据修改规则
+     * 根据修改normal规则
      * @param ruleId
      * @param request
      * @param authorization
      * @return
      */
     @PutMapping("/editSchedulePlan/{ruleId}")
-    public boolean updateRule(@PathVariable Long ruleId,
-                              @RequestBody MakeSchedulePlanRequest request,
+    public boolean updateNormalRule(@PathVariable Long ruleId,
+                              @RequestBody MakeSchedulePlanOfNormalRequest request,
                               @RequestHeader("Authorization") String authorization) {
 
         String token = jwtUtils.extractToken(authorization);
         Long userId = jwtUtils.parseUserId(token);
 
         return userSchedulePlanService.updateRule(userId, ruleId, request);
+    }
+
+    /**
+     * 根据修改special规则
+     * @param ruleId
+     * @param request
+     * @param authorization
+     * @return
+     */
+    @PutMapping("/editSpecialRule/{ruleId}")
+    public boolean updateSpecialRule(@PathVariable Long ruleId,
+                              @RequestBody MakeSchedulePlanOfSpeciallRequest request,
+                              @RequestHeader("Authorization") String authorization) {
+
+        String token = jwtUtils.extractToken(authorization);
+        Long userId = jwtUtils.parseUserId(token);
+
+        return userSchedulePlanService.updateSpecialRule(userId, ruleId, request);
     }
 
     @PostMapping("/makeSchedulePlanRow")
@@ -121,6 +151,7 @@ public class UserSchedulePlanController {
 
         String token = jwtUtils.extractToken(authorization);
         Long userId = jwtUtils.parseUserId(token);
+
         return userSchedulePlanService.makeSchedulePlanRow(userId,request);
     }
 
@@ -140,6 +171,7 @@ public class UserSchedulePlanController {
 
         return userSchedulePlanService.getSavedSchedule(userId, ruleId);
     }
+
     /**
      * Swagger测试排班规则。
      */

@@ -42,14 +42,14 @@ public class UserSchedulePlan implements Serializable {
     @Schema(description = "排班计算起始日期")
     private LocalDate startDate;
 
-    @Schema(description = "起始日期对应的初始班次")
+    @Schema(description = "NORMAL规则起始日期对应的初始班次")
     private String initialShiftCode;
+
+    @Schema(description = "SPECIAL规则起始日期对应的初始轮次索引")
+    private Integer initialRotationIndex;
 
     @Schema(description = "方案结束日期，空表示长期有效")
     private Integer totalDays;
-
-    @Schema(description = "是否启用：1是，0否")
-    private Byte enabled;
 
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
@@ -113,14 +113,6 @@ public class UserSchedulePlan implements Serializable {
         this.totalDays = totalDays;
     }
 
-    public Byte getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Byte enabled) {
-        this.enabled = enabled;
-    }
-
     public LocalDateTime getCreateTime() {
         return createTime;
     }
@@ -137,6 +129,14 @@ public class UserSchedulePlan implements Serializable {
         this.updateTime = updateTime;
     }
 
+    public Integer getInitialRotationIndex() {
+        return initialRotationIndex;
+    }
+
+    public void setInitialRotationIndex(Integer initialRotationIndex) {
+        this.initialRotationIndex = initialRotationIndex;
+    }
+
     @Override
     public String toString() {
         return "UserSchedulePlan{" +
@@ -146,8 +146,8 @@ public class UserSchedulePlan implements Serializable {
         ", planName = " + planName +
         ", startDate = " + startDate +
         ", initialShiftCode = " + initialShiftCode +
+        ", initialRotationIndex = " + initialRotationIndex +
         ", totalDays = " + totalDays +
-        ", enabled = " + enabled +
         ", createTime = " + createTime +
         ", updateTime = " + updateTime +
         "}";

@@ -133,17 +133,17 @@ public class ScheduleService {
         ScheduleRuleConfig scheduleRuleConfig =
                 new ScheduleRuleConfig();
 
-        scheduleRuleConfig.setWorkDays(
-                scheduleRule.getWorkDays()
-        );
-
-        scheduleRuleConfig.setRestDays(
-                scheduleRule.getRestDays()
-        );
-
-        scheduleRuleConfig.setRotateOnRestDay(
-                scheduleRule.getRotateOnRestDay() != null && scheduleRule.getRotateOnRestDay() == 1
-        );
+//        scheduleRuleConfig.setWorkDays(
+//                scheduleRule.getWorkDays()
+//        );
+//
+//        scheduleRuleConfig.setRestDays(
+//                scheduleRule.getRestDays()
+//        );
+//
+//        scheduleRuleConfig.setRotateOnRestDay(
+//                scheduleRule.getRotateOnRestDay() != null && scheduleRule.getRotateOnRestDay() == 1
+//        );
 
         scheduleRuleConfig.setShiftOrderList(
                 shiftOrderList

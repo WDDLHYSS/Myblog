@@ -31,14 +31,6 @@ public class ScheduleRule implements Serializable {
     @Schema(description = "规则名称")
     private String ruleName;
 
-    @Schema(description = "连续上班天数")
-    private Integer workDays;
-
-    @Schema(description = "连续休息天数")
-    private Integer restDays;
-
-    @Schema(description = "休息日遇到倒班日是否倒班：1是，0否")
-    private Byte rotateOnRestDay;
 
     @Schema(description = "是否启用：1是，0否")
     private Byte enabled;
@@ -48,6 +40,9 @@ public class ScheduleRule implements Serializable {
 
     @Schema(description = "更新时间")
     private LocalDateTime updateTime;
+
+    @Schema(description = "是否为正常班次")
+    private String ruleType;
 
     public Long getId() {
         return id;
@@ -63,30 +58,6 @@ public class ScheduleRule implements Serializable {
 
     public void setRuleName(String ruleName) {
         this.ruleName = ruleName;
-    }
-
-    public Integer getWorkDays() {
-        return workDays;
-    }
-
-    public void setWorkDays(Integer workDays) {
-        this.workDays = workDays;
-    }
-
-    public Integer getRestDays() {
-        return restDays;
-    }
-
-    public void setRestDays(Integer restDays) {
-        this.restDays = restDays;
-    }
-
-    public Byte getRotateOnRestDay() {
-        return rotateOnRestDay;
-    }
-
-    public void setRotateOnRestDay(Byte rotateOnRestDay) {
-        this.rotateOnRestDay = rotateOnRestDay;
     }
 
     public Byte getEnabled() {
@@ -122,17 +93,19 @@ public class ScheduleRule implements Serializable {
         this.userId = userId;
     }
 
+    public String getRuleType() {return ruleType;}
+
+    public void setRuleType(String ruleType) {this.ruleType = ruleType;}
+
     @Override
     public String toString() {
         return "ScheduleRule{" +
         "id = " + id +
         ", ruleName = " + ruleName +
-        ", workDays = " + workDays +
-        ", restDays = " + restDays +
-        ", rotateOnRestDay = " + rotateOnRestDay +
         ", enabled = " + enabled +
         ", createTime = " + createTime +
         ", updateTime = " + updateTime +
+        ", ruleType = " + ruleType +
         "}";
     }
 }

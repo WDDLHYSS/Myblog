@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.wddlhyss.myblog.entity.VO.SavedScheduleResponse;
 import com.wddlhyss.myblog.entity.VO.ScheduleRow;
 import com.wddlhyss.myblog.entity.VO.ScheduleRuleResponse;
-import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanRequest;
+import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanOfNormalRequest;
+import com.wddlhyss.myblog.entity.dto.MakeSchedulePlanOfSpeciallRequest;
 import com.wddlhyss.myblog.entity.dto.ScheduleTestRequest;
 
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
  */
 public interface IUserSchedulePlanService extends IService<UserSchedulePlan> {
 
-    Long makeSchedulePlan(Long userId, MakeSchedulePlanRequest makeSchedulePlanRequest);
+    Long makeScheduleNormalPlan(Long userId, MakeSchedulePlanOfNormalRequest makeSchedulePlanOfNormalRequest);
 
     List<ScheduleRuleResponse> findUserRule(Long userId);
 
@@ -28,9 +29,13 @@ public interface IUserSchedulePlanService extends IService<UserSchedulePlan> {
 
     ScheduleRuleResponse getRuleDetail(Long userId, Long ruleId);
 
-    boolean updateRule(Long userId, Long ruleId, MakeSchedulePlanRequest request);
+    boolean updateRule(Long userId, Long ruleId, MakeSchedulePlanOfNormalRequest request);
 
     List<ScheduleRow> makeSchedulePlanRow(Long userId, ScheduleTestRequest request);
 
     SavedScheduleResponse getSavedSchedule(Long userId, Long ruleId);
+
+    Long makeScheduleSpecialPlan(Long userId, MakeSchedulePlanOfSpeciallRequest makeSchedulePlanOfSpeciallRequest);
+
+    boolean updateSpecialRule(Long userId, Long ruleId, MakeSchedulePlanOfSpeciallRequest request);
 }

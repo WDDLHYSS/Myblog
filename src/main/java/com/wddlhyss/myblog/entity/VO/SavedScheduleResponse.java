@@ -21,7 +21,11 @@ public class SavedScheduleResponse {
 
     private LocalDate startDate;
 
+    //NORMAL
     private String initialShift;
+
+    //SPECIAL
+    private Integer getInitialRotationIndex;
 
     private Integer totalDays;
 

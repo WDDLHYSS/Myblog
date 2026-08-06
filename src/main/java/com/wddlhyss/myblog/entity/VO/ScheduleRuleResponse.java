@@ -1,30 +1,43 @@
 package com.wddlhyss.myblog.entity.VO;
 
-import com.wddlhyss.myblog.entity.ScheduleRuleShiftOrder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 public class ScheduleRuleResponse {
 
+    /**
+     * 规则ID
+     */
     private Long ruleId;
 
+    /**
+     * 规则名称
+     */
     private String ruleName;
 
-    private Integer workDays;
+    /**
+     * NORMAL / SPECIAL /....
+     */
+    private String ruleType;
 
-    private Integer restDays;
-
-    private Boolean rotateOnRestDay;
-
+    /**
+     * 是否启用
+     */
     private Boolean enabled;
 
-    private List<ScheduleRuleShiftOrder>
-            shiftOrderList;
+    /**
+     * 普通规则详情
+     * SPECIAL 时为 null
+     */
+    private ScheduleRuleNormalResponse normalRule;
 
-    private List<Integer> rotationDayList;
+    /**
+     * 特殊规则详情
+     * NORMAL 时为 null
+     */
+    private ScheduleRuleSpecialResponse specialRule;
 
     private LocalDateTime createTime;
 
