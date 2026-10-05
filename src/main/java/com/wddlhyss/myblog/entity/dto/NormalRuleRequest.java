@@ -13,7 +13,7 @@ public class NormalRuleRequest {
 
     private int restDays;
 
-    private boolean rotateOnRestDay;
+    private Boolean rotateOnRestDay;
 
     private List<ScheduleRuleShiftOrder> shiftOrderList;
 
